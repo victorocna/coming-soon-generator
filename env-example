@@ -1,7 +1,7 @@
-SITE_NAME=Example website
-TITLE=Coming soon | Example website
-DESCRIPTION=Lorem ipsum dolor sin amet
-IMAGE=https://images.unsplash.com/photo-1558509825-97fd4feedd88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
-URL=https://example.org
-FORM=https://your-api.example.org
-FONT=Montaga
+SITE_NAME="Example website"
+TITLE="Coming soon | Example website"
+DESCRIPTION="Lorem ipsum dolor sin amet"
+IMAGE="https://images.unsplash.com/photo-1558439937-cd2da55d256c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+URL="https://example.org"
+FORM="https://your-api.example.org"
+FONT="Montaga"

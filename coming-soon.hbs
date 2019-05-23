@@ -29,7 +29,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 2em;
     }
     form button {
       margin: 0 .75em;
@@ -39,11 +38,20 @@
       background-color: rgba(0,0,0,0.5);
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 1em;
     }
     #center {
+      background: rgba(0,0,0,0.25);
+      padding: 2em 0;
+      max-width: 620px;
       text-align: center;
+    }
+    #footer {
+      position: absolute;
+      bottom: 0;
     }
 
     h1,
@@ -51,10 +59,18 @@
     h3 {
       color: #fff;
       font-family: "{{ FONT }}", serif;
+      text-shadow: 0 0 2px #555;
+    }
+    h3 {
+      margin: 2em 0;
     }
 
-    .borcan-cu-miere {
+    form #borcan-cu-miere {
       display: none;
+    }
+    form #email {
+      width: 65%;
+      max-width: 300px;
     }
   </style>
 </head>
@@ -62,23 +78,25 @@
 
   <div id="main">
     <div id="center">
-      <h1>Our website is coming really soon</h1>
+      <h1>Our website is ready really soon</h1>
       <h3>Want to be the first to know when we launch? Sign up below, it only takes 30 seconds or so.</h3>
 
       <form action="{{ FORM }}" method="POST">
-        <input type="email" name="email" class="form-control" placeholder="Email address" style="width:200px" required>
-        <input type="text" name="borcan-cu-miere" class="borcan-cu-miere">
-        <button type="submit" class="btn btn-primary">Send</button>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+        <input type="text" name="borcan-cu-miere" id="borcan-cu-miere">
+        <button type="submit" class="btn btn-success">Send</button>
       </form>
+    </div>
 
-      <p id="js-form-response"></p>
+    <div id="footer">
+      <p id="js-form-response" class="alert"></p>
     </div>
   </div>
 
   <script>
     (() => {
       const form = document.querySelector('form');
-      const formResponse = document.querySelector('js-form-response');
+      const formResponse = document.querySelector('#js-form-response');
 
       form.onsubmit = e => {
         e.preventDefault();
@@ -89,6 +107,9 @@
         formElements
           .filter(input => !!input.name)
           .map(input => (formData[input.name] = input.value));
+
+        // Add the website
+        formData['website'] = "{{ URL }}";
 
         if (!!formData["borcan-cu-miere"]) {
           return false;
@@ -111,12 +132,20 @@
           if (response.target.status === 200) {
             // The form submission was successful
             form.reset();
-            formResponse.innerHTML = 'Thanks for the message. I’ll be in touch shortly.';
+            formResponse.classList.add('alert-success');
+            formResponse.innerHTML = 'Thank you! You have been subscribed.';
+            formResponse.style.display = 'block';
           } else {
             // The form submission failed
-            formResponse.innerHTML = 'Something went wrong';
-            console.error(JSON.parse(response.target.response).message);
+            formResponse.classList.add('alert-warning');
+            formResponse.innerHTML = 'Something went wrong :(';
+            formResponse.style.display = 'block';
           }
+
+          setTimeout(function() {
+            formResponse.innerHTML = '';
+            formResponse.style.display = 'none';
+          }, 5000);
         };
       };
     })();
