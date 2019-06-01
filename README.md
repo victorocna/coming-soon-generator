@@ -12,6 +12,7 @@ Upload it using your favourite FTP client and enjoy!
 
 ```bash
 cp env-example .env
+npm install
 npx webpack
 ```
 
