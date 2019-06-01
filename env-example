@@ -5,3 +5,5 @@ IMAGE="https://images.unsplash.com/photo-1558439937-cd2da55d256c?ixlib=rb-1.2.1&
 URL="https://example.org"
 FORM="https://your-api.example.org"
 FONT="Montaga"
+HEADLINE="Our website is ready really soon"
+TEASER="Want to be the first to know when we launch? Sign up below, it only takes 30 seconds or so."

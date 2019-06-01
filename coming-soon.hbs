@@ -14,13 +14,13 @@
   <meta property="og:site_name" content="{{ SITE_NAME }}"/>
   <meta property="og:title" content="{{ TITLE }}"/>
   <meta property="og:description" content="{{ DESCRIPTION }}"/>
-  <meta property="og:image" content="{{ IMAGE }}">
+  <meta property="og:image" content="{{{ IMAGE }}}">
   <meta property="og:url" content="{{ URL }}">
 
   <style>
     body {
       background: #333 no-repeat center center;
-      background-image: url("{{ IMAGE }}");
+      background-image: url("{{{ IMAGE }}}");
       background-size: cover;
       height: 100vh;
       color: #fff;
@@ -78,8 +78,8 @@
 
   <div id="main">
     <div id="center">
-      <h1>Our website is ready really soon</h1>
-      <h3>Want to be the first to know when we launch? Sign up below, it only takes 30 seconds or so.</h3>
+      <h1>{{ HEADLINE }}</h1>
+      <h3>{{ TEASER }}</h3>
 
       <form action="{{ FORM }}" method="POST">
         <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
