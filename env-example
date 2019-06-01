@@ -4,7 +4,7 @@ DESCRIPTION="Lorem ipsum dolor sin amet"
 IMAGE="https://images.unsplash.com/photo-1558439937-cd2da55d256c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
 URL="https://example.org"
 FORM="https://your-api.example.org"
-FONT="Montaga"
 HEADLINE="Our website is ready really soon"
 TEASER="Want to be the first to know when we launch? Sign up below, it only takes 30 seconds or so."
-ANALYTICS="UA-000000000-0"
+FONT="Montaga" # Google Font
+GTAG="UA-000000000-0" # Google Analytics Global Tag
