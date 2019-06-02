@@ -93,6 +93,7 @@
     </div>
   </div>
 
+  <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
   <script>
     (() => {
       const form = document.querySelector('form');
@@ -108,45 +109,34 @@
           .filter(input => !!input.name)
           .map(input => (formData[input.name] = input.value));
 
-        // Add the website
-        formData['website'] = "{{ URL }}";
-
         if (!!formData["borcan-cu-miere"]) {
           return false;
         }
 
-        // Log what our lambda function will receive
-        console.log(JSON.stringify(formData));
+        axios.post('{{ FORM }}', {
+          email: formData['email'],
+        }, {
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+        })
+        .then(function () {
+          form.reset();
 
-        // Construct an HTTP request
-        var xhr = new XMLHttpRequest();
-        xhr.open(form.method, form.action, true);
-        xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+          formResponse.classList.add('alert-success');
+          formResponse.innerHTML = 'Thank you! You have been subscribed.';
+          formResponse.style.display = 'block';
+        })
+        .catch(function () {
+          formResponse.classList.add('alert-warning');
+          formResponse.innerHTML = 'Something went wrong :(';
+          formResponse.style.display = 'block';
+        });
 
-        // Send the collected data as JSON
-        xhr.send(JSON.stringify(formData));
-
-        // Callback function
-        xhr.onloadend = response => {
-          if (response.target.status === 200) {
-            // The form submission was successful
-            form.reset();
-            formResponse.classList.add('alert-success');
-            formResponse.innerHTML = 'Thank you! You have been subscribed.';
-            formResponse.style.display = 'block';
-          } else {
-            // The form submission failed
-            formResponse.classList.add('alert-warning');
-            formResponse.innerHTML = 'Something went wrong :(';
-            formResponse.style.display = 'block';
-          }
-
-          setTimeout(function() {
-            formResponse.innerHTML = '';
-            formResponse.style.display = 'none';
-          }, 5000);
-        };
+        setTimeout(function() {
+          formResponse.innerHTML = '';
+          formResponse.style.display = 'none';
+        }, 5000);
       };
     })();
   </script>
