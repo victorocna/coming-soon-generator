@@ -6,5 +6,5 @@ URL="https://example.org"
 FORM="https://your-api.example.org"
 HEADLINE="Our website is ready really soon"
 TEASER="Want to be the first to know when we launch? Sign up below, it only takes 30 seconds or so."
-FONT="Montaga" # Google Font
-GTAG="UA-000000000-0" # Google Analytics Global Tag
+FONT="Montaga"
+GTAG="UA-000000000-0"
