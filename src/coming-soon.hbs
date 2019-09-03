@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ FONT }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{FONT}}">
 
   <title>{{ TITLE }}</title>
-  <meta name="description" content="{{ DESCRIPTION }}">
+  <meta name="description" content="{{DESCRIPTION}}">
 
-  <meta property="og:site_name" content="{{ SITE_NAME }}"/>
-  <meta property="og:title" content="{{ TITLE }}"/>
-  <meta property="og:description" content="{{ DESCRIPTION }}"/>
+  <meta property="og:site_name" content="{{ SITE_NAME }}" />
+  <meta property="og:title" content="{{ TITLE }}" />
+  <meta property="og:description" content="{{ DESCRIPTION }}" />
   <meta property="og:image" content="{{{ IMAGE }}}">
   <meta property="og:url" content="{{ URL }}">
 
@@ -25,17 +26,19 @@
       height: 100vh;
       color: #fff;
     }
+
     form {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     form button {
       margin: 0 .75em;
     }
 
     #main {
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -43,12 +46,14 @@
       justify-content: center;
       padding: 1em;
     }
+
     #center {
-      background: rgba(0,0,0,0.25);
-      padding: 2em 0;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 2em;
       max-width: 620px;
       text-align: center;
     }
+
     #footer {
       position: absolute;
       bottom: 0;
@@ -58,9 +63,11 @@
     h2,
     h3 {
       color: #fff;
-      font-family: "{{ FONT }}", serif;
+      font-family: "{{ FONT }}",
+      serif;
       text-shadow: 0 0 2px #555;
     }
+
     h3 {
       margin: 2em 0;
     }
@@ -68,12 +75,14 @@
     form #borcan-cu-miere {
       display: none;
     }
+
     form #email {
       width: 65%;
       max-width: 300px;
     }
   </style>
 </head>
+
 <body>
 
   <div id="main">
@@ -81,11 +90,13 @@
       <h1>{{ HEADLINE }}</h1>
       <h3>{{ TEASER }}</h3>
 
+      {{#if FORM}}
       <form action="{{ FORM }}" method="POST">
         <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
         <input type="text" name="borcan-cu-miere" id="borcan-cu-miere">
         <button type="submit" class="btn btn-success">Send</button>
       </form>
+      {{/if}}
     </div>
 
     <div id="footer">
@@ -93,6 +104,7 @@
     </div>
   </div>
 
+  {{#if FORM}}
   <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
   <script>
     (() => {
@@ -116,37 +128,38 @@
         axios.post('{{ FORM }}', {
           email: formData['email'],
         }, {
-          headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-        })
-        .then(function () {
-          form.reset();
+            headers: {
+              'content-type': 'application/x-www-form-urlencoded',
+            },
+          })
+          .then(function () {
+            form.reset();
 
-          formResponse.classList.add('alert-success');
-          formResponse.innerHTML = 'Thank you! You have been subscribed.';
-          formResponse.style.display = 'block';
-        })
-        .catch(function () {
-          formResponse.classList.add('alert-warning');
-          formResponse.innerHTML = 'Something went wrong :(';
-          formResponse.style.display = 'block';
-        });
+            formResponse.classList.add('alert-success');
+            formResponse.innerHTML = 'Thank you! You have been subscribed.';
+            formResponse.style.display = 'block';
+          })
+          .catch(function () {
+            formResponse.classList.add('alert-warning');
+            formResponse.innerHTML = 'Something went wrong :(';
+            formResponse.style.display = 'block';
+          });
 
-        setTimeout(function() {
+        setTimeout(function () {
           formResponse.innerHTML = '';
           formResponse.style.display = 'none';
         }, 5000);
       };
     })();
   </script>
+  {{/if}}
 
   {{#if GTAG}}
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ GTAG }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', '{{ GTAG }}');
@@ -154,4 +167,5 @@
   {{/if}}
 
 </body>
+
 </html>
